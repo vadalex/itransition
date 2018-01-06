@@ -1,0 +1,21 @@
+﻿@model WebUI.Models.StudyDeckModel
+
+@{
+    ViewBag.Title = "Question";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="jumbotron">
+    <p><h2><strong>@Model.Deck.Title</strong></h2></p>    
+    <p>
+        <h4>Card number: @Model.Card.Number</h4>
+        <h4>Remaining cards: @(Model.Deck.Cards.Count-Model.Card.Number)</h4>
+    </p>    
+    <p>
+        @Html.Partial("FlashCardPartial", Model.Card)
+    </p>
+    <p class="text-center">
+        @Html.ActionLink("Correct (" + (Model.Card.Number - Model.Statistic.UnknownCards.Count() - 1) + ")", "CorrectCard", new { deckId = Model.Deck.DeckID, cardId = Model.Card.CardID }, new { @class = "btn btn-success btn-lg" })
+        @Html.ActionLink("Incorrect (" + Model.Statistic.UnknownCards.Count() + ")" , "IncorrectCard", new { deckId = Model.Deck.DeckID, cardId = Model.Card.CardID }, new { @class = "btn btn-danger btn-lg" })
+    </p>
+</div>

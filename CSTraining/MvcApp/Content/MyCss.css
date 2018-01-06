@@ -1,0 +1,8 @@
+﻿a.paypalButton
+{
+    background: url(https://www.paypalobjects.com/webstatic/en_US/btn/btn_pponly_142x27.png) no-repeat top left;
+     display: block;
+     width: 142px;
+     height: 27px;
+     text-indent: -9999px;
+}

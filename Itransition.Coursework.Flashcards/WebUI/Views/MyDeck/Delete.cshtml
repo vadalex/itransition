@@ -1,0 +1,36 @@
+﻿@model Entities.Deck
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<div class="jumbotron">    
+    <div>
+        <p><h2><strong>Are you sure you want to remove this?</strong></h2></p>
+        <p>
+            <h3><small>@Html.DisplayNameFor(model => model.Title)</small></h3>
+            <h2>@Html.DisplayFor(model => model.Title)</h2>
+        </p>
+        <p>
+            <h3><small>@Html.DisplayNameFor(model => model.DateCreated)</small></h3>
+            <h2>@Html.DisplayFor(model => model.DateCreated)</h2>
+        </p>
+        <p>
+            <h3><small>Card count</small></h3>
+            <h2>@Model.Cards.Count() cards</h2>
+        </p>
+        <p>
+            <h3><small>@Html.DisplayNameFor(model => model.Description)</small></h3>
+            <small>@Html.DisplayFor(model => model.Description)</small>
+        </p>  
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+            <p>
+                @Html.ActionLink("Back", "Index", new { }, new { @class = "btn btn-primary" })
+                <input type="submit" value="Remove" class="btn btn-danger" />                
+            </p>
+        }      
+    </div>    
+</div>
+

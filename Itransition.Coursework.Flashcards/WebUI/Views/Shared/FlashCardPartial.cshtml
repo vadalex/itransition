@@ -1,0 +1,35 @@
+﻿@model Entities.Card
+<div class="row">
+    <div class="col-md-6">
+        <div class="currentCard">
+            <h4>Question</h4>
+            <hr />
+            <p>
+                <h3>@Model.Question</h3>
+                <h4><small>@Model.QuestionSubTitle</small></h4>
+            </p>
+            @if (@Model.QuestionImageLink != null)
+            {
+                <img src="@Model.QuestionImageLink" alt="there is not image" class="img-rounded" height="180" width="250">
+            }
+            else { }
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="currentCard">
+            <h4>Answer</h4>
+            <hr />
+            <p>
+                <h3>@Model.Answer</h3>
+                <h4><small>@Model.AnswerSubTitle</small></h4>
+            </p>
+            @if (@Model.AnswerImageLink != null)
+            {
+                <img src="@Model.AnswerImageLink" alt="there is not image" class="img-rounded" height="180" width="250">
+            }
+            else { }
+        </div>
+    </div>
+</div>
+
+    

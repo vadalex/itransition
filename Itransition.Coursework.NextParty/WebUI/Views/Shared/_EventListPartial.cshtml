@@ -1,0 +1,34 @@
+﻿@model IEnumerable<WebUI.Models.Entities.Event>
+
+<table class="table table-hover table-striped">
+    <thead>
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.Title)</th>            
+            <th>Organizer</th>
+            <th>@Html.DisplayNameFor(model => model.DatetimeOfStart)</th>
+            <th>Address</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@Html.ActionLink(item.Title, "Details", "MyEvent", new { eventId = item.EventID }, new { @class = "btn btn-default active" })</td>
+                <td>@item.Organizer.UserName</td>
+                <td>@item.DatetimeOfStart</td>
+                <td>@item.Address</td>
+                <td>
+                    @if (item.Participants.Any(i => i.UserID == WebSecurity.CurrentUserId))
+                    {
+                        <div class="label label-success">I am participate</div>
+                    }
+                    else
+                    { 
+                        <div class="label label-danger">I am not participate</div>
+                    }                
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,12 @@
+﻿@model IEnumerable<WebUI.Models.Entities.Event>
+@{
+    ViewBag.Title = "My Events";
+}
+
+<div class="page-header">
+    <h2>My Events</h2>
+</div>
+
+<div>
+    @Html.Partial("_EventListPartial", Model)
+</div>

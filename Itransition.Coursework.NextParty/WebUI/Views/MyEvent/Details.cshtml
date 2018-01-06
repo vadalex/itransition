@@ -1,0 +1,57 @@
+﻿@model WebUI.Models.Entities.Event
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>Event</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Title)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Title)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.DatetimeOfStart)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.DatetimeOfStart)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Duration)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Duration)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Latidude)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Latidude)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Longitude)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Longitude)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Organizer.UserName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Organizer.UserName)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.EventID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

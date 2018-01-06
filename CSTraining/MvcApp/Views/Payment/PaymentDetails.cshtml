@@ -1,0 +1,73 @@
+﻿@using System.Globalization
+@model MvcApp.Models.PaymentModel
+@{
+    ViewBag.Title = "PaymentDetails";
+}
+
+<h2>Payment details</h2>
+<h6>"Dear @Model.BuyerName, everything is ready for transaction to take place. Click on button below to confirm transaction"</h6>
+<div>
+    <dl class="dl-horizontal">
+        <dt>
+            Buyer
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.BuyerName)
+        </dd>
+
+        <dt>
+            Total amount
+        </dt>
+        <dd>
+            @Model.Order.Amount.ToString(CultureInfo.InvariantCulture) $
+        </dd>
+
+        <dt>
+            Order date
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Order.CreatedDate)
+        </dd>
+
+        <dt>
+            Details
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Order.Details)
+        </dd>
+
+        <dt>
+            PayerId
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Order.PayerId)
+        </dd>
+
+        <dt>
+            Products
+        </dt>
+        <dd>
+            <table>
+                <tbody>
+                @foreach (var product in Model.Order.Products)
+                {
+                    <tr><td>@product.Name</td></tr>
+                }
+                </tbody>
+            </table>
+        </dd>
+    </dl>
+</div>
+<div>
+    @using (Html.BeginForm("PaymentConfirmation", "Payment"))
+    {
+        @Html.AntiForgeryToken()
+        <div class="form-actions no-color">
+            <input id="orderId" name="orderId" type="hidden" value="@Model.Order.OrderID">
+            <input type="image" src="https://www.paypalobjects.com/webstatic/en_US/btn/btn_checkout_pp_142x27.png" alt="Confirm order" style="width: 142px"/>
+            @Html.ActionLink("Cancel", "Index", "Home")
+        </div>
+    }
+</div>
+
+

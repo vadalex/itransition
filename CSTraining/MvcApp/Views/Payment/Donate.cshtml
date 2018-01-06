@@ -1,0 +1,30 @@
+﻿@model MvcApp.Models.PaymentModel
+@{
+    ViewBag.Title = "Donate";
+}
+
+<h1>Save red crayfishes in Belarus</h1>
+<p>Please give as much as you can afford. 100% of your donation will be used for crayfish conservation and crayfish river restoration work in Belarus</p>
+<img src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcRRduwXwwBcEK1b0rke2i_tFi8isrbaXS3zjWDdpHNb9yL5XxA6" />
+
+<div>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        <div class="form-actions no-color">
+            $ <input type="number" name="amount" id="amount" min="1" value="1" style="width: 40px"/>
+            <input type="image" src="https://www.paypalobjects.com/webstatic/en_US/btn/btn_donate_92x26.png" alt="Confirm order" style="width: 96px; vertical-align: bottom" />
+        </div>
+    }
+</div>
+<hr />
+<div>
+    <form action=" https://www.sandbox.paypal.com/cgi-bin/webscr" method="post">
+        <input type="hidden" name="cmd" value="_xclick" />
+        <input type="hidden" name="business" value="93wadim93-facilitator@tut.by" />
+        <input type="hidden" name="item_name" value="Donation" />
+        <input type="hidden" name="amount" value="1.00" />
+        <input type="hidden" name="return" value="@Model.ReturnSuccessUrl" />
+        <input type="submit" value="Donate 1$ !!!" />
+    </form>
+</div>

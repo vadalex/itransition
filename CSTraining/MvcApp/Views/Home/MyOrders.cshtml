@@ -1,0 +1,61 @@
+﻿@model IEnumerable<Entities.Order>
+
+@{
+    ViewBag.Title = "MyOrders";
+}
+
+<h2>My orders</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            Customer
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Status)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CreatedDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Details)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Amount)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsPaid)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PayerId)
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Customer.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreatedDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Details)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Amount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsPaid)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PayerId)
+            </td>
+        </tr>
+    }
+
+</table>

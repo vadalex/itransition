@@ -1,0 +1,34 @@
+﻿@{
+    ViewBag.Title = "ReactJSTodoList";
+}
+
+@section head
+{
+    @Styles.Render("~/content/todoliststyle")
+    @Scripts.Render("~/scripts/jquery")
+    @Scripts.Render("~/scripts/react")
+    @Scripts.Render("~/scripts/flux")
+    
+}
+
+<div id="content">
+    <h2>React Todo List</h2>
+
+    <div class="todo-wrapper" id="todoApp">
+    </div>
+</div>
+
+@section scripts
+{
+
+    <script type="text/jsx" src="~/Scripts/react/components/header.jsx"></script>
+    <script type="text/jsx" src="~/Scripts/react/components/item.jsx"></script>
+    <script type="text/jsx" src="~/Scripts/react/components/list.jsx"></script>
+    <script type="text/jsx" src="~/Scripts/react/components/form.jsx"></script>
+    <script type="text/jsx" src="~/Scripts/react/components/app.jsx"></script>
+
+    <script type="text/jsx">                               
+        React.render(<TodoApp />, document.getElementById("todoApp"));    
+    </script>
+}
+

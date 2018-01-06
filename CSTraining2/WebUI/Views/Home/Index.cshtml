@@ -1,0 +1,47 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>    
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" href="~/Images/accent.png">          
+    <script src="~/Scripts/bundles/todo.bundle.js"></script>       
+    <title>Index</title>
+</head>
+<body>
+    <header>        
+    </header>
+    <div id="body" class="container-fluid">        
+        <section class="content-wrapper main-content clear-fix">
+            <div ng-app="TodoListApp" ng-controller="TodoListController">
+                <h2>Angular Todo List</h2>
+                <div class="todo-wrapper">
+                    <h2>You've got <span class="emphasis">{{getTotalTodos()}}</span> things to do</h2>
+                    <ul class="todo-list">
+                        <li ng-repeat="item in items | orderBy:'Order'">
+                            <input type="checkbox" ng-model="item.IsDone" ng-change="updateTodo(item)" />
+                            <span class="done-{{item.IsDone}}">{{item.TodoText}}</span>
+                            <button class="remove-btn" value="Remove" ng-click="deleteTodo()">Remove</button>
+                        </li>
+                    </ul>
+                    <form>
+                        <input class="add-input" placeholder="I need to..." type="text" ng-model="formTodoText" ng-model-instant />
+                        <button class="add-btn" ng-click="addTodo()"><h2>Add</h2></button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </div>
+    <footer>
+        <div class="content-wrapper">
+            <div class="float-left">
+                <p>&copy; @DateTime.Now.Year - My ASP.NET MVC Application</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

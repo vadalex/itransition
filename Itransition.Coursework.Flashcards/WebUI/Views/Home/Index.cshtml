@@ -1,0 +1,29 @@
+﻿@model IEnumerable<Entities.Deck>
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="jumbotron"> 
+    <p><h2><strong>Last added decks</strong></h2></p>    
+    <table class="table table-hover">        
+        <thead>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.Title)</th>
+                <th>@Html.DisplayNameFor(model => model.DateCreated)</th>
+                <th>Author</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@Html.ActionLink(item.Title, "Details", new { id = item.DeckID }, new { @class = "btn btn-default active" })</td>
+                    <td>@Html.DisplayFor(modelItem => item.DateCreated)</td>
+                    <td>@Html.DisplayFor(modelItem => item.User.UserName)</td>                    
+                    <td>@Html.ActionLink("Study", "Start", "StudyDeck", new { deckId = item.DeckID }, new { @class = "btn btn-default btn-success" })</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

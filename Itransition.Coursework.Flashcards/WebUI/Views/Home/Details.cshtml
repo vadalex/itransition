@@ -1,0 +1,33 @@
+﻿@model Entities.Deck
+@{
+    ViewBag.Title = "Deck details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="jumbotron">
+    <p><h2><strong>Deck details</strong></h2></p>    
+    <p>
+        <h3><small>@Html.DisplayNameFor(model => model.Title)</small></h3>
+        <h2>@Html.DisplayFor(model => model.Title)</h2>
+    </p>
+    <p>
+        <h3><small>@Html.DisplayNameFor(model => model.DateCreated)</small></h3>
+        <h2>@Html.DisplayFor(model => model.DateCreated)</h2>
+    </p>
+    <p>
+        <h3><small>Author</small></h3>
+        <h2>@Html.DisplayFor(model => model.User.UserName)</h2>
+    </p>
+    <p>
+        <h3><small>Card count</small></h3>
+        <h2>@Model.Cards.Count() cards</h2>
+    </p>
+    <p>
+        <h3><small>@Html.DisplayNameFor(model => model.Description)</small></h3>
+        <small>@Html.DisplayFor(model => model.Description)</small>
+    </p>
+    <p>        
+        @Html.ActionLink("Back", "Index", new { }, new { @class="btn btn-primary btn-lg" })
+        @Html.ActionLink("Study", "Start", "StudyDeck", new { deckId = Model.DeckID }, new { @class = "btn btn-success btn-lg" })        
+    </p>
+</div>

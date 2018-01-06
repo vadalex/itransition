@@ -1,0 +1,30 @@
+﻿@{
+    ViewBag.Title = "AngularTodoList";
+}
+
+@section head
+{
+    @Styles.Render("~/content/todoliststyle")
+    @Scripts.Render("~/scripts/angular")
+}
+
+<div ng-app="TodoListApp" ng-controller="TodoListController">
+    <h2>Angular Todo List</h2>
+
+    <div class="todo-wrapper">
+        <h2>You've got <span class="emphasis">{{getTotalTodos()}}</span> things to do</h2>
+        <ul class="todo-list">
+            <li ng-repeat="item in items">
+                <input type="checkbox" ng-model="item.IsDone" ng-change="updateTodo(item)"  />
+                <span class="done-{{item.IsDone}}">{{item.TodoText}}</span>
+                <button class="remove-btn" value="Remove" ng-click="deleteTodo()">Remove</button>
+            </li>
+        </ul>
+        <form>
+            <input class="add-input" placeholder="I need to..." type="text" ng-model="formTodoText" ng-model-instant />
+            <button class="add-btn" ng-click="addTodo()"><h2>Add</h2></button>
+        </form>
+    </div>
+</div>
+
+

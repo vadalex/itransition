@@ -1,0 +1,16 @@
+﻿.currentCard {
+z-index: 4;
+height: 330px;
+width: 450px;
+box-shadow: 0 0 12px #919191;
+-webkit-box-shadow: 0 0 12px #919191;
+margin-top: 20px;
+margin-bottom: 30px;
+margin-left: auto;
+margin-right: auto;
+background-color: white;
+text-align: center;
+overflow: hidden;
+cursor: pointer;
+display: block;
+}

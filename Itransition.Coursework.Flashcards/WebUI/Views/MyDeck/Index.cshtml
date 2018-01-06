@@ -1,0 +1,30 @@
+﻿@model IEnumerable<Entities.Deck>
+
+@{
+    ViewBag.Title = "My decks";
+}
+<div class="jumbotron">
+    <p><h2><strong>Your decks</strong></h2></p>    
+    <p>@Html.ActionLink("Create deck", "Create", new { }, new { @class = "btn btn-warning btn-lg" })</p>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.Title)</th>
+                <th>@Html.DisplayNameFor(model => model.DateCreated)</th>
+                <th>@Html.DisplayNameFor(model => model.IsShared)</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@Html.ActionLink(item.Title, "Details", new { deckId = item.DeckID }, new { @class = "btn btn-default active" })</td>
+                    <td>@Html.DisplayFor(modelItem => item.DateCreated)</td>
+                    <td>@Html.DisplayFor(modelItem => item.IsShared)</td>                   
+                    <td>@Html.ActionLink("Study", "Start", "StudyDeck", new { deckId = item.DeckID }, new { @class = "btn btn-default btn-success" })</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

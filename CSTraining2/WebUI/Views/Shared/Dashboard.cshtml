@@ -1,0 +1,122 @@
+﻿<div ng-app="dashboardApp">
+    <div class="page-header text-center">
+        <h1>This is dashboard</h1>
+    </div>    
+    <div class="container-fluid">
+        <div class="row">            
+            <div class="col-md-6" ng-controller="lineChartController">
+                <div class="panel panel-default">
+                    <div class="panel-heading">Line Chart
+                        <button type="button" class="btn btn-default pull-right" ng-click="updateList()"><img src="~/Images/refresh-button-icon.png" style="width: 24px; height:24px" /></button>
+                    </div>                    
+                    <div class="panel-body">
+                        <canvas id="line" class="chart chart-line" chart-data="data" chart-labels="labels" chart-series="series" chart-options="options" chart-colors="colors"></canvas>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6" ng-controller="pieChartController">
+                <div class="panel panel-default">
+                    <div class="panel-heading">Pie Chart
+                        <button type="button" class="btn btn-default pull-right" ng-click="updateList()"><img src="~/Images/refresh-button-icon.png" /></button>
+                    </div>
+                    <div class="panel-body">
+                        <canvas id="pie" class="chart chart-pie" chart-data="data" chart-labels="labels" chart-options="options"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4" ng-controller="accountController">
+                <div class="panel panel-default">
+                    <div class="panel-heading">First Table
+                        <button type="button" class="btn btn-default pull-right" ng-click="updateList()"><img src="~/Images/refresh-button-icon.png" /></button>
+                    </div>
+                    <div class="panel-body">                        
+                        <table ng-table="tableParams" class="table table-bordered table-condensed table-hover" show-filter="true">
+                            <tr ng-repeat="account in data">
+                                <td title="'Username'" filter="{ Username: 'text'}" sortable="'Username'">
+                                    {{account.Username}}
+                                </td>
+                                <td title="'Email'" filter="{ Email: 'text'}" sortable="'Email'">
+                                    {{account.Email}}
+                                </td>
+                                <td title="'Is Online'" class="text-center" sortable="'IsOnline'">
+                                    <input type="checkbox" disabled="disabled" ng-model="account.IsOnline" />
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>                
+            </div>
+            <div class="col-md-4" ng-controller="creditCardController">
+                <div class="panel panel-default">
+                    <div class="panel-heading">Second Table
+                        <button type="button" class="btn btn-default pull-right" ng-click="updateList()"><img src="~/Images/refresh-button-icon.png" /></button>
+                    </div>
+                    <div class="panel-body">
+                        <table ng-table="tableParams" class="table table-bordered table-condensed table-hover" show-filter="true">                            
+                            <tr ng-repeat="card in data" ng-hide="card.removed">
+                                <td title="'Credit Number'" filter="{ Number: 'text'}" sortable="'Number'">
+                                    <input type="text" name="Number" ng-model="card.Number" ng-change="card.btnClass=''" class="form-control input-sm" />
+                                </td>
+                                <td title="'Credit Type'" filter="{ Type: 'text'}" sortable="'Type'">
+                                    <input type="text" name="Type" ng-model="card.Type" ng-change="card.btnClass=''" class="form-control input-sm" />                                    
+                                </td>
+                                <td title="'Balance'" class="text-center" filter="{ Balance: 'number'}" sortable="'Balance'">
+                                    <input type="number" ng-model="card.Balance" ng-change="card.btnClass=''" class="form-control input-sm" />                                    
+                                </td>
+                                <td width="85px"> 
+                                    <button class="btn btn-sm" ng-class="card.btnClass" ng-click="save(card)"><span class="glyphicon glyphicon-ok"></span></button>
+                                    <button class="btn btn-danger btn-sm" ng-click="del(card)"><span class="glyphicon glyphicon-trash"></span></button>                                    
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>                
+            </div>
+            <div class="col-md-4" ng-controller="personController  as $ctrl">
+                <script type="text/ng-template" id="myModalContent.html">
+                    <div class="modal-header">
+                        <h3 class="modal-title" id="modal-title">This is modal</h3>
+                    </div>
+                    <div class="modal-body" id="modal-body">
+                        <div class="form-group">
+                            <label for="FirstName">FirstName:</label>
+                            <input type="text" name="First Name" ng-model="$ctrl.person.FirstName" class="form-control input-sm" />
+                        </div>
+                        <div class="form-group">
+                            <label for="LastName">LastName:</label>
+                            <input type="text" name="Last Name" ng-model="$ctrl.person.LastName" class="form-control input-sm" />
+                        </div>
+                        <div class="form-group">
+                            <label for="Race">Race:</label>
+                            <input type="text" name="Race" ng-model="$ctrl.person.Race" class="form-control input-sm" />
+                        </div>
+                        <div class="form-group">
+                            <label for="BithDate">Bith Date:</label>
+                            <input type="text" name="BithDate" ng-model="$ctrl.person.BirthDate" class="form-control input-sm" />
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-primary" type="button" ng-click="$ctrl.ok()">OK</button>
+                        <button class="btn btn-warning" type="button" ng-click="$ctrl.cancel()">Cancel</button>
+                    </div>
+                </script>                
+
+                <div class="panel panel-default">
+                    <div class="panel-heading">Third Table
+                        <button type="button" class="btn btn-default pull-right" ng-click="updateList()"><img src="~/Images/refresh-button-icon.png" /></button>
+                    </div>
+                    <div class="panel-body">
+                        <table ng-table="tableParams" class="table table-bordered table-condensed table-hover" show-filter="false">
+                            <tr ng-repeat="person in data">
+                                <td ng-click="$ctrl.open(person)" title="'People'" filter="{ FirstName: 'text'}" sortable="'FirstName'">{{person.FirstName}} {{person.LastName}} is {{person.Race}} (born on {{person.BirthDate}} )</td>
+                            </tr>
+                        </table>                
+                    </div>
+                </div>                
+            </div>   
+        </div>             
+    </div>        
+</div>
+<script src="~/Scripts/bundles/dashboard.bundle.js"></script>

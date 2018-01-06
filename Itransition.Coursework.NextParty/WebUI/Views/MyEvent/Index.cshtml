@@ -1,0 +1,48 @@
+﻿@model IEnumerable<WebUI.Models.Entities.Event>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="page-header">
+    <h2>My events</h2>
+</div>
+
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.Title)</th>            
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+            {
+            <tr>
+                <td>@Html.ActionLink(item.Title, "Details", new { Id = item.EventID }, new { @class = "btn btn-default active" })</td>                
+                <td>@Html.ActionLink(item.Title, "Details", new { Id = item.EventID }, new { @class = "btn btn-default btn-success" })</td>
+            </tr>
+            }
+    </tbody>
+</table>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Title)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DatetimeOfStart)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Duration)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Latidude)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Longitude)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Organizer.UserName)
+        </td>

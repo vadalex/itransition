@@ -1,0 +1,68 @@
+﻿@model Entities.Deck
+@{
+    ViewBag.Title = "Deck details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="jumbotron">
+    <div>
+        <p><h2><strong>Deck details</strong></h2></p>
+        <p>
+            <h3><small>@Html.DisplayNameFor(model => model.Title)</small></h3>
+            <h2>@Html.DisplayFor(model => model.Title)</h2>
+        </p>
+        <p>
+            <h3><small>@Html.DisplayNameFor(model => model.DateCreated)</small></h3>
+            <h2>@Html.DisplayFor(model => model.DateCreated)</h2>
+        </p>
+        <p>
+            <h3><small>Card count</small></h3>
+            <h2>@Model.Cards.Count() cards</h2>            
+        </p>
+        <p>
+            <h3><small>@Html.DisplayNameFor(model => model.Description)</small></h3>
+            <small>@Html.DisplayFor(model => model.Description)</small>
+        </p>
+        <p>
+            @Html.ActionLink("Back", "Index", new { }, new { @class = "btn btn-primary btn-lg" })
+            @Html.ActionLink("Edit", "Edit", new { deckId = Model.DeckID }, new { @class = "btn btn-warning btn-lg" })
+            @Html.ActionLink("Remove", "Delete", new { deckId = Model.DeckID }, new { @class = "btn btn-danger btn-lg" })
+            @Html.ActionLink("Study", "Start", "StudyDeck", new { deckId = Model.DeckID }, new { @class = "btn btn-success btn-lg" })
+        </p>
+    </div>   
+    <div>
+        <p><h2>Cards</h2></p>
+        <p>@Html.ActionLink("Create card", "Create", "Card", new { deckId = @Model.DeckID }, new { @class = "btn btn-warning btn-lg" })</p>
+        @if(Model.Cards.Count != 0)
+        {
+        <table class="table table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th>@Html.DisplayNameFor(model => model.Cards.First().Number)</th>
+                    <th>@Html.DisplayNameFor(model => model.Cards.First().Question)</th>
+                    <th>@Html.DisplayNameFor(model => model.Cards.First().Answer)</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.Cards.OrderBy(c => c.Number))
+                {
+                    <tr>
+                        <td>@Html.ActionLink(item.Number.ToString(), "Details", "Card", new { cardId = item.CardID }, new { @class = "btn btn-default btn-lg active" })</td>
+                        <td>@Html.DisplayFor(modelItem => item.Question)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Answer)</td>
+                        <td>
+                            @Html.ActionLink("Edit", "Edit", "Card", new { cardId = item.CardID }, new { @class = "btn btn-warning" })
+                            @Html.ActionLink("Remove", "Delete", "Card", new { cardId = item.CardID }, new { @class = "btn btn-danger" })
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        }
+        else
+        {
+            <p><h3>There aren't cards in deck</h3></p>
+        }
+    </div>
+</div>

@@ -1,0 +1,32 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+
+
+@section featured {
+    <section class="featured">
+        <div class="content-wrapper">
+            <hgroup class="title">
+                <h1>ASP.NET MVC.</h1>
+            </hgroup>
+            <p>
+                To learn more about ASP.NET MVC visit
+                <a href="http://asp.net/mvc" title="ASP.NET MVC Website">http://asp.net/mvc</a>.
+                The page features <mark>videos, tutorials, and samples</mark> to help you get the most from ASP.NET MVC.
+                If you have any questions about ASP.NET MVC visit
+                <a href="http://forums.asp.net/1146.aspx/1?MVC" title="ASP.NET MVC Forum">our forums</a>.
+            </p>
+        </div>
+    </section>
+}
+
+<h2>Index</h2>
+<h3>We suggest the following:</h3>
+<ol class="round">
+    <li class="one">
+        <h4>@Html.ActionLink("Todo list on Angular.js", "AngularTodoList", "Home")</h4>
+    </li>
+    <li class="two">
+        <h4>@Html.ActionLink("Todo list on Backbone.js", "BackboneTodoList", "Home")</h4>
+    </li>
+</ol>

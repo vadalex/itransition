@@ -1,0 +1,17 @@
+﻿@model Entities.Card
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<div class="jumbotron">
+    <div>
+        <p><h2><strong>Card details</strong></h2></p>
+        @Html.Partial("FlashCardPartial", Model)
+        <p>
+            @Html.ActionLink("Back", "Index", "MyDeck", new { }, new { @class = "btn btn-primary btn-lg" })
+            @Html.ActionLink("Edit", "Edit", new { cardId = Model.CardID }, new { @class = "btn btn-warning btn-lg" })
+            @Html.ActionLink("Remove", "Delete", new { cardId = Model.CardID }, new { @class = "btn btn-danger btn-lg" })
+        </p>
+    </div>
+</div>

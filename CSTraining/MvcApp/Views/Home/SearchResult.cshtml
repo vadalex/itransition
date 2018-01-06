@@ -1,0 +1,149 @@
+﻿@model BusinessLogic.Search.SearchResult
+
+@{
+    ViewBag.Title = "SearchResult";
+}
+
+<h2>Search results for ' <span style="font-style:italic">@Model.KeyWords</span> ' </h2>
+
+@if (Model.Products.Any()) 
+{     
+    <hr/>
+    <h4>In products:</h4>
+<table class="table">
+    <tr>
+        <th>
+            ID
+        </th>        
+        <th>
+            Name
+        </th>        
+        <th>
+            Price
+        </th>
+        <th>
+            Category
+        </th>        
+    </tr>
+
+    @foreach (var item in Model.Products)
+    {
+        <tr>
+            <td>
+                @Html.ActionLink(item.ProductID.ToString(), "Details", "Product", new { id = item.ProductID }, new { } )
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>        
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Category)
+            </td>            
+        </tr>
+    }    
+</table>
+} 
+
+@if (Model.Suppliers.Any())
+{
+    <hr />
+    <h4>In suppliers:</h4>
+    <table class="table">
+        <tr>
+            <th>
+                ID
+            </th>
+            <th>
+                Name
+            </th>
+            <th>
+                Details
+            </th>             
+        </tr>
+
+        @foreach (var item in Model.Suppliers)
+        {
+            <tr>
+                <td>
+                    @Html.ActionLink(item.SupplierID.ToString(), "Details", "Supplier", new { id = item.SupplierID}, new { })
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Details)
+                </td>              
+            </tr>
+        }
+    </table>
+} 
+
+@if (Model.Orders.Any())
+{
+    <hr />
+    <h4>In orders:</h4>
+    <table class="table">
+        <tr>
+            <th>
+                ID
+            </th>
+            <th>
+                Details
+            </th>
+            <th>
+                CustomerID
+            </th>            
+        </tr>
+
+        @foreach (var item in Model.Orders)
+        {
+            <tr>
+                <td>
+                    @Html.ActionLink(item.OrderID.ToString(), "Details", "Order", new { id = item.OrderID }, new { })
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Details)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CustomerID)
+                </td> 
+            </tr>
+        }
+    </table>
+} 
+
+@if (Model.Customers.Any())
+{
+    <hr />
+    <h4>In customers:</h4>
+    <table class="table">
+        <tr>
+            <th>
+                ID
+            </th>
+            <th>
+                Name
+            </th>
+            <th>
+                Address
+            </th>            
+        </tr>
+
+        @foreach (var item in Model.Customers)
+        {
+            <tr>
+                <td>
+                    @Html.ActionLink(item.CustomerID.ToString(), "Details", "Customer", new { id = item.CustomerID }, new { })
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Address)
+                </td>
+            </tr>
+        }
+    </table>
+} 

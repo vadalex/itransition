@@ -1,0 +1,16 @@
+﻿#map_canvas{    
+    margin-top: 10px;
+    margin-bottom : 10px;
+    height: 400px;
+}
+
+#map_canvas img {
+    max-width: none;    
+}
+
+.infoDiv {
+    height: 200px;
+    width: 300px;
+    -webkit-user-select: none;
+    background-color: white;
+}

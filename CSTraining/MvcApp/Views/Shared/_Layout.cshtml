@@ -1,0 +1,84 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>@ViewBag.Title - My ASP.NET MVC Application</title>
+        <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+        <meta name="viewport" content="width=device-width" />
+        @Styles.Render("~/content/css")
+    </head>
+<body>
+<header>
+    <div class="content-wrapper">
+        <div class="float-left">
+            <p class="site-title">@Html.ActionLink("your logo here", "Index", "Home")</p>
+        </div>
+        <div class="float-right">
+            <nav>
+                <ul id="menu">
+                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                    <li>@Html.ActionLink("About", "About", "Home")</li>
+                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                    <li>@Html.ActionLink("Donate", "Donate", "Payment")</li>
+                    <li>@Html.ActionLink("My orders", "MyOrders", "Home")</li>
+                    <li>@Html.ActionLink("Comments", "Index", "Comment")</li>
+                </ul>
+            </nav>
+        </div>
+        <div style="clear: both" class="float-right">
+            <button id="UpdateLucene">Update indexes</button>
+            @using (Html.BeginForm("SearchResult", "Home", FormMethod.Get, new {style = "display:inline-block"}))
+            {
+                <input type="search" id="keyWords" name="keyWords"/>
+                <input type="submit" value="Search"/>
+            }
+        </div>
+        <div style="clear: both;margin-bottom:5px" class="float-right">
+            @Html.Partial("_LoginPartial")
+        </div>
+    </div>
+</header>
+    <div id="body" class="container-fluid">
+        @RenderSection("featured", required: false)
+        <section class="content-wrapper main-content clear-fix">
+            @RenderBody()
+        </section>
+    </div>
+<footer>
+    <div class="content-wrapper">    
+        <div class="float-left">
+            <p>&copy; @DateTime.Now.Year - My ASP.NET MVC Application</p>
+        </div>
+    </div>
+</footer>
+
+@Scripts.Render("~/scripts/jquery")
+@RenderSection("scripts", required: false)
+
+<script type="text/javascript">
+    $("#UpdateLucene").click(function() {
+        $.ajax({
+            url: "/Home/UpdateLucene",
+            dataType: "json",
+            type: "POST",
+            contentType: 'application/json; charset=utf-8',
+            async: true,
+            processData: false,
+            cache: false,
+            success: function(data) {
+                if (data === true) {
+                    alert('Indexes have updated');
+                } else {
+                    alert('Something is wrong');
+                }
+            },
+            error: function(xhr) {
+                alert('Something is wrong');
+            }
+        });
+    });
+</script>
+
+</body>
+</html>
+

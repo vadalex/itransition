@@ -1,0 +1,13 @@
+﻿@model WebUI.Models.StudyDeckModel
+
+@{
+    ViewBag.Title = "Finish";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="jumbotron">    
+    <p><h2>Your results</h2></p>    
+    <p>
+        <h4>Incorrect cards: @Model.Statistic.UnknownCards.Count()</h4>
+        <h4>Correct cards: @(Model.Deck.Cards.Count - Model.Statistic.UnknownCards.Count())</h4>
+    </p>    
+</div>

@@ -1,0 +1,38 @@
+﻿@model WebUI.Models.IndexViewModel
+@{
+    ViewBag.Title = "Home Page";
+}
+@section head {
+    <script src="http://maps.google.com/maps/api/js?sensor=true" type="text/javascript"></script>
+    @Styles.Render("~/Content/GoogleMap.css")
+}
+<div>
+    <div class="page-header">
+        <h3>Near events</h3>
+    </div>
+    <div id="map_canvas"></div>
+</div>
+<div>
+    <div class="page-header">
+        <h3>Best events</h3>
+    </div>
+    <div>@Html.Partial("_EventListPartial", Model.BestEvents)</div>
+</div>
+<div>
+    <div class="page-header">
+        <h3>Worst events</h3>
+    </div>
+    <div>@Html.Partial("_EventListPartial", Model.WorstEvents)</div>
+</div>
+
+@foreach (var e in Model.AllFutureEvents)
+{
+    <div class="foo" data-latitude="@(e.Latitude)" data-longitude="@(e.Longitude)">
+        
+    </div>
+}
+
+@section scripts {
+    @Scripts.Render("~/Scripts/googleMapIndex.js")
+    @Scripts.Render("~/bundles/jqueryval")
+}    

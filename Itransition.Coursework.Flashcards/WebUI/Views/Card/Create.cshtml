@@ -1,0 +1,65 @@
+﻿@model Entities.Card
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<div>
+    <h2>hello</h2>
+    <p><h2>Create card</h2></p>
+    @using (Html.BeginForm("Create", "Card", FormMethod.Post, new {enctype="multipart/form-data"}))
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(false)
+        <input type="hidden" id="deckId" name="deckId" value="@ViewBag.deckId" />
+        <div class="form-horizontal">
+            <div class="form-group">
+                @Html.LabelFor(model => model.Question, new { @class = "col-sm-2 control-label" })
+                <div class="col-sm-10">
+                    @Html.EditorFor(model => model.Question)
+                    @Html.ValidationMessageFor(model => model.Question)
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.QuestionSubTitle, new { @class = "col-sm-2 control-label" })
+                <div class="col-sm-10">
+                    @Html.EditorFor(model => model.QuestionSubTitle)                    
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.QuestionImageLink, new { @class = "col-sm-2 control-label" })
+                <div class="col-sm-10">
+                    <input type="file" name="questionImage" id="questionImage" />
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Answer, new { @class = "col-sm-2 control-label" })
+                <div class="col-sm-10">
+                    @Html.EditorFor(model => model.Answer)
+                    @Html.ValidationMessageFor(model => model.Answer)
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.AnswerSubTitle, new { @class = "col-sm-2 control-label" })
+                <div class="col-sm-10">
+                    @Html.EditorFor(model => model.AnswerSubTitle)                    
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.AnswerImageLink, new { @class = "col-sm-2 control-label" })
+                <div class="col-sm-10">
+                    <input type="file" name="answerImage" id="answerImage" />
+                </div>
+            </div>            
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    @Html.ActionLink("Back", "Details", "MyDeck", new { deckId = ViewBag.deckId }, new { @class = "btn btn-primary" })
+                    <button type="submit" class="btn btn-success">Create</button>
+                </div>
+            </div>
+        </div>
+    }
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+    }
+</div>

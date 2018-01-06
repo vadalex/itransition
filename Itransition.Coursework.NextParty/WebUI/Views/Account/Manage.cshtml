@@ -1,0 +1,32 @@
+﻿@model WebUI.Models.LocalPasswordModel
+@{
+    ViewBag.Title = "Manage Account";
+}
+
+<div class="page-header">
+    <h2>@ViewBag.Title</h2>
+</div>        
+
+<p class="message-success">@ViewBag.StatusMessage</p>
+
+<h3>You're logged in as <strong>@User.Identity.Name</strong>.</h3>
+
+@if (ViewBag.HasLocalPassword)
+{
+    @Html.Partial("_ChangePasswordPartial")
+}
+else
+{ 
+    @Html.Partial("_SetPasswordPartial")
+}
+
+<section id="externalLogins" style="padding-top:20px">
+    @Html.Action("RemoveExternalLogins")
+
+    <h4>Add an external login</h4>
+    @Html.Action("ExternalLoginsList", new { ReturnUrl = ViewBag.ReturnUrl })
+</section>
+
+@section scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
